@@ -12,11 +12,19 @@
             <h:form>
                 <h1><h:outputText value="Liste des clients"/></h1>
                 <p:dataTable value="#{customerMBean.customers}" var="item" paginator="true" rows="10" sortMode="multiple">
+                    <f:facet name="header">
+                        <p:outputPanel>
+                            <h:outputText value="Recherche dans tous les champs de recherche"/>
+                            <p:inputText id="globalFilter" onkeyup="PF('customerTable').filter()"
+                                         style="width:150px"/>
+                        </p:outputPanel>
+                    </f:facet>
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="CustomerId"/>
                         </f:facet>
-                        <h:outputText value="#{item.customerId}"/>
+                        <h:link outcome="CustomerDetails?idCustomer=#{item.customerId}" 
+                                value="#{item.customerId}"/>
                     </p:column>
                     <p:column sortBy="#{item.name}" filterBy="#{item.name}">
                         <f:facet name="header">
@@ -84,7 +92,7 @@
                         </f:facet>
                         <h:outputText value="#{item.zip.zipCode}" />
                     </p:column>
-                  
+
                 </p:dataTable>
             </h:form>
         </f:view>
