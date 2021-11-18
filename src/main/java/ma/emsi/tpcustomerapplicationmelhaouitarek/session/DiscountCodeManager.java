@@ -18,7 +18,7 @@ import ma.emsi.tpcustomerapplicationmelhaouitarek.entities.DiscountCode;
  */
 @Stateless
 public class DiscountCodeManager {
-     @PersistenceContext(unitName = "discountCodePU")
+     @PersistenceContext(unitName = "customerPU")
     private EntityManager em;
      
        public List<DiscountCode> getAllDiscountCodes() {
@@ -32,9 +32,9 @@ public class DiscountCodeManager {
     public void persist(DiscountCode discountCode) {
         em.persist(discountCode);
     }
-
-    public DiscountCode DiscountCode(int idDiscountCode) {
-        return em.find(DiscountCode.class, idDiscountCode);
+    public DiscountCode findById(String discountCode) {
+        return em.find(DiscountCode.class, discountCode);
     }
+   
        
 }
